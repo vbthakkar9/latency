@@ -1,4 +1,3 @@
-package com.latency.client;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
