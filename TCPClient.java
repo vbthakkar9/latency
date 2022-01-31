@@ -66,15 +66,17 @@ public class TCPClient {
 			sc.close();
 			System.out.println("Success!");
 			Thread.sleep(1000);
-//			DataOutputStream ios = new DataOutputStream(
-//					process.getOutputStream());
-//			ios.writeBytes("pkill -SIGINT tcpdump");
-//			ios.flush();
-//			ios.close();
-//			process.waitFor();
+			DataOutputStream ios = new DataOutputStream(
+					process.getOutputStream());
+			ios.writeBytes("pkill -SIGINT tcpdump");
+			ios.flush();
+			ios.close();
+			process.waitFor();
 			long pid = process.pid();
 			Runtime.getRuntime().exec("kill " + pid);
 		} catch (Exception e) {
+			System.out.println("Failed!");
+			long pid = process.pid();
 			e.printStackTrace();
 		}
 	}
