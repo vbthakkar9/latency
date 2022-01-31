@@ -66,11 +66,11 @@ public class TCPClient {
 			sc.close();
 			System.out.println("Success!");
 			Thread.sleep(1000);
-			DataOutputStream ios = new DataOutputStream(
-					process.getOutputStream());
+//			DataOutputStream ios = new DataOutputStream(
+//					process.getOutputStream());
 			//ios.writeBytes("pkill -SIGINT tcpdump");
-			ios.flush();
-			ios.close();
+			//ios.flush();
+			//ios.close();
 			//process.waitFor();
 			long pid = process.pid();
 			Runtime.getRuntime().exec("kill " + pid);
