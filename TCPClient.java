@@ -68,7 +68,7 @@ public class TCPClient {
 			Thread.sleep(10000);
 			DataOutputStream ios = new DataOutputStream(
 				process.getOutputStream());
-			//ios.writeBytes("pkill -SIGINT tcpdump");
+			ios.writeBytes("pkill -SIGINT tcpdump");
 			ios.flush();
 			ios.close();
 			System.out.println();
