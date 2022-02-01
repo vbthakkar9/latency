@@ -71,17 +71,18 @@ public class TCPClient {
 			ios.writeBytes("pkill -SIGINT tcpdump");
 			ios.flush();
 			ios.close();
-			System.out.println();
+			System.out.println("force destory");
 			//process.waitFor();
-			long pid = process.pid();
-			System.out.println("PID "+pid);
-			String cmd2 = "sudo kill " + pid;
-			System.out.println(cmd2);
-			Runtime.getRuntime().exec(cmd2);
-			String cmd3 = "sudo kill -9 " + pid;
-			System.out.println(cmd3);
-			Runtime.getRuntime().exec(cmd3);
-			process.destroy();
+//			long pid = process.pid();
+//			System.out.println("PID "+pid);
+//			String cmd2 = "sudo kill " + pid;
+//			System.out.println(cmd2);
+//			Runtime.getRuntime().exec(cmd2);
+//			String cmd3 = "sudo kill -9 " + pid;
+//			System.out.println(cmd3);
+//			Runtime.getRuntime().exec(cmd3);
+//			process.destroy();
+			
 			process.destroyForcibly();
 		} catch (Exception e) {
 			System.out.println("Failed!");
