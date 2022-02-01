@@ -75,7 +75,7 @@ public class TCPClient {
 			//process.waitFor();
 			long pid = process.pid();
 			System.out.println("PID "+pid);
-			Runtime.getRuntime().exec("kill -9" + pid);
+			Runtime.getRuntime().exec("sudo kill " + pid);
 		} catch (Exception e) {
 			System.out.println("Failed!");
 			long pid = process.pid();
