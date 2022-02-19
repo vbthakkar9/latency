@@ -19,7 +19,7 @@ public class LatencyReport3 {
 		List<String> Latency = new ArrayList<>();
 		Map<Double, Double> LatencyMap = new TreeMap<>();
 
-		String rtt = "tshark -Tfields -E header=y -e frame.time_relative -e tcp.analysis.ack_rtt -r test.pcap";
+		String rtt = "tshark -Tfields -E header=y -e frame.time_relative -e tcp.analysis.ack_rtt -e tcp.analysis.retransmission -r C:\\Java-Test-Example\\test.pcap";
 		Process process3 = Runtime.getRuntime().exec(rtt);
 		BufferedReader stdInput3 = new BufferedReader(new InputStreamReader(process3.getInputStream()));
 		// Read the output from the command
@@ -60,13 +60,11 @@ public class LatencyReport3 {
 		}
 		
 		for (Map.Entry<Integer, List<Double>> item1 : xx.entrySet()) {
-			double average  = item1.getValue().stream().mapToDouble(f -> f.doubleValue()).sum()/item1.getValue().size();
+			double average  = item1.getValue().stream().mapToDouble(f -> f).average().getAsDouble();
 			System.out.println("Before Size" + item1.getValue().size());
-			
 			int index  = (item1.getValue().size()*95)/100;
-			item1.getValue().remove(index);
-			double p95  =item1.getValue().stream().mapToDouble(f -> f.doubleValue()).sum()/index;
-			System.out.println("After Size" + item1.getValue().size());
+			double p95  =item1.getValue().stream().mapToDouble(f -> f).limit(index).average().getAsDouble();
+			System.out.println("After Size" + item1.getValue().stream().mapToDouble(f -> f).limit(index).count());
 			System.out.println("Average "+ average + " p95 "+p95);
 		}
 
