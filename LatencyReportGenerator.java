@@ -32,7 +32,7 @@ public class LatencyReportGenerator {
 			skipFirstLine++;
 		}
 
-		int i = 10;//iterate on every 5 second
+		int i = 10;//iterate on every 10 second
 		Map<Integer, List<Double>> mapByDuration = new TreeMap<>();
 		for (Map.Entry<Double, Double> item1 : LatencyMap.entrySet()) {
 			if (item1.getKey() < i) {
