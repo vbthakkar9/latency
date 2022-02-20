@@ -32,18 +32,19 @@ public class LatencyReportGenerator {
 			skipFirstLine++;
 		}
 
-		int i = 5;//iterate on every 5 second
+		int i = 10;//iterate on every 5 second
 		Map<Integer, List<Double>> mapByDuration = new TreeMap<>();
 		for (Map.Entry<Double, Double> item1 : LatencyMap.entrySet()) {
 			if (item1.getKey() < i) {
 				mapByDuration.computeIfAbsent(i, k -> new ArrayList<>()).add(item1.getValue());
 			} else {
-				i = i + 5;
+				i = i + 10;
 			}
 		}
-		System.out.println("-----Latency--------");
+		System.out.println("-----LATENCY REPORT--------");
+		System.out.println("");
 		int lastEntry = ((TreeMap<Integer, List<Double>>) mapByDuration).lastEntry().getKey();
-		System.out.println("Interval     Average    p95     p99");
+		System.out.println("Interval     AVERAGE                 P95               P99");
 		for (Map.Entry<Integer, List<Double>> item1 : mapByDuration.entrySet()) {
 			item1.getValue().sort(Comparator.naturalOrder());
 			double average  = item1.getValue().stream().mapToDouble(f -> f).average().getAsDouble();
@@ -55,9 +56,9 @@ public class LatencyReportGenerator {
 			double p99  =item1.getValue().stream().mapToDouble(f -> f).limit(index99).average().getAsDouble();
 
 			if(item1.getKey()==lastEntry){
-				System.out.println(item1.getKey()-5+" - "+"Dur"+ average +""+ p95+""+p99);
+				System.out.println(item1.getKey()-5+" - "+"Dur  "+ average +"  "+ p95+"  "+p99);
 			}else{
-				System.out.println(item1.getKey()-5+" - "+item1.getKey()+ ""+ average + ""+p95+""+p99);	
+				System.out.println(item1.getKey()-5+" - "+item1.getKey()+ "  "+ average + "  "+p95+"  "+p99);	
 			}
 		}
 	}
