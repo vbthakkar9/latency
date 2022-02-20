@@ -32,7 +32,7 @@ public class LatencyReportGenerator {
 			skipFirstLine++;
 		}
 
-		int i = 10;//iterate on every 10 second
+		int i = 10;//iterate on every 5 second
 		Map<Integer, List<Double>> mapByDuration = new TreeMap<>();
 		for (Map.Entry<Double, Double> item1 : LatencyMap.entrySet()) {
 			if (item1.getKey() < i) {
@@ -56,9 +56,9 @@ public class LatencyReportGenerator {
 			double p99  =item1.getValue().stream().mapToDouble(f -> f).limit(index99).average().getAsDouble();
 
 			if(item1.getKey()==lastEntry){
-				System.out.println(item1.getKey()-5+" - "+"Dur  "+ average +"  "+ p95+"  "+p99);
+				System.out.println(String.format("%5s  %15d %15d 15d" , item1.getKey()-10,average, p95,p99));
 			}else{
-				System.out.println(item1.getKey()-5+" - "+item1.getKey()+ "  "+ average + "  "+p95+"  "+p99);	
+				System.out.println(String.format("%5s  %15d %15d 15d", item1.getKey()-10,average,p95,p99));	
 			}
 		}
 	}
