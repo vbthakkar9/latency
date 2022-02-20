@@ -1,13 +1,4 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
-public class LatencyReportGenerator {
 	public static void main(String[] args) throws IOException,
 	InterruptedException {
 
@@ -55,10 +46,9 @@ public class LatencyReportGenerator {
 			double p99  =item1.getValue().stream().mapToDouble(f -> f).limit(index99).average().getAsDouble();
 
 			if(item1.getKey()==lastEntry){
-				System.out.println(item1.getKey()-5+" - "+"Dur"+ "Average:  "+ average + "    p95:  "+p95+"    p99:  "+p99);
+				System.out.println(item1.getKey()-5+" - "+"Dur"+ average +""+ p95+""+p99);
 			}else{
-				System.out.println(item1.getKey()-5+" - "+item1.getKey()+ "Average:  "+ average + "    p95:  "+p95+"    p99:  "+p99);	
+				System.out.println(item1.getKey()-5+" - "+item1.getKey()+ ""+ average + ""+p95+""+p99);	
 			}
 		}
 	}
-}
